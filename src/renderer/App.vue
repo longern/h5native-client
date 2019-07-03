@@ -5,7 +5,7 @@
 
 <script>
   export default {
-    name: 'h5native'
+    name: 'h5native-client'
   }
 </script>
 
