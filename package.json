@@ -57,7 +57,8 @@
     "electron-settings": "^3.2.0",
     "npm": "^6.9.2",
     "vue": "^2.5.16",
-    "vue-electron": "^1.0.6"
+    "vue-electron": "^1.0.6",
+    "vuetify": "^1.5.16"
   },
   "devDependencies": {
     "ajv": "^6.5.0",
