@@ -30,6 +30,10 @@ function createAppWindow (argv, workingDirectory) {
 
   const parsedAppUrl = new url.URL(appURL)
 
+  if (_.includes(['localhost', '127.0.0.1'], parsedAppUrl.hostname)) {
+    parsedAppUrl.protocol = 'http'
+  }
+
   mainWindow = new BrowserWindow({
     height: 563,
     useContentSize: true,
@@ -43,7 +47,7 @@ function createAppWindow (argv, workingDirectory) {
     }
   })
 
-  mainWindow.loadURL(appURL)
+  mainWindow.loadURL(parsedAppUrl.href)
 
   mainWindow.on('closed', () => {
     mainWindow = null
