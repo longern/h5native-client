@@ -42,6 +42,10 @@
         }
       ]
     },
+    "protocols": [{
+      "name": "H5 Native App URL",
+      "schemes": ["h5na"]
+    }],
     "mac": {
       "icon": "build/icons/icon.icns"
     },
