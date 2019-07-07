@@ -29,6 +29,11 @@ if (process.env.NODE_ENV !== 'development') {
   app.setAsDefaultProtocolClient('h5na')
 }
 
+app.on('open-url', function (event, url) {
+  process.argv.push(url)
+  event.preventDefault()
+})
+
 app.on('ready', function () {
   createWindow(process.argv)
 
