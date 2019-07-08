@@ -2,6 +2,7 @@ import { BrowserWindow } from 'electron'
 import _ from 'lodash'
 import path from 'path'
 import url from 'url'
+import settings from 'electron-settings'
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
@@ -30,7 +31,7 @@ function createAppWindow (argv, workingDirectory) {
 
   const parsedAppUrl = new url.URL(appURL)
 
-  if (_.includes(['localhost', '127.0.0.1'], parsedAppUrl.hostname)) {
+  if (_.includes(['localhost', '127.0.0.1'], parsedAppUrl.hostname) || settings.get('disableHTTPS', false)) {
     parsedAppUrl.protocol = 'http'
   }
 

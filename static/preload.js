@@ -49,7 +49,7 @@
       return null
     }
 
-    if (authorizedSites.indexOf(window.location.href) === -1) {
+    if (authorizedSites.indexOf(window.location.href) === -1 && !settings.get('trustAllApps', false)) {
       const choice = remote.dialog.showMessageBox(remote.getCurrentWindow(), {
         type: 'question',
         buttons: ['Accept', 'Reject'],
