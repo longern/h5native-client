@@ -1,13 +1,13 @@
 <template>
   <div class="settings">
-    <input type="checkbox"
-      v-model="formData.disableHTTPS"
-    >
-    <label>Disable HTTPS</label><br>
-    <input type="checkbox"
-      v-model="formData.trustAllApps"
-    >
-    <label>Trust All Apps</label>
+      <v-switch
+        v-model="formData.disableHTTPS"
+        label="Disable HTTPS"
+      ></v-switch>
+      <v-switch
+        v-model="formData.trustAllApps"
+        label="Trust All Apps"
+      ></v-switch>
   </div>
 </template>
 
@@ -32,7 +32,6 @@
           for (const k in this.formData) {
             electronSettings.set(k, this.formData[k])
           }
-          console.log(electronSettings.getAll())
         },
         deep: true
       }
