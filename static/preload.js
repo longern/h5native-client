@@ -69,8 +69,8 @@
     }
 
     try {
-      if (path === 'h5na') {
-        path = './h5na'
+      if (path === 'h5native') {
+        path = './h5native'
       }
       return require(path)
     } catch (e) {
