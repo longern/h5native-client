@@ -1,13 +1,13 @@
 <template>
   <div class="settings">
-      <v-switch
-        v-model="formData.disableHTTPS"
-        label="Disable HTTPS"
-      ></v-switch>
-      <v-switch
-        v-model="formData.trustAllApps"
-        label="Trust All Apps"
-      ></v-switch>
+    <v-switch
+      v-model="formData.disableHTTPS"
+      label="Disable HTTPS"
+    ></v-switch>
+    <v-switch
+      v-model="formData.trustAllApps"
+      label="Trust All Apps"
+    ></v-switch>
   </div>
 </template>
 
