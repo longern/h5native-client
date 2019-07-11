@@ -11,6 +11,14 @@
               <v-list-tile-title>Settings</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
+          <v-list-tile v-ripple @click="handleShutdown">
+            <v-list-tile-action>
+              <v-icon>close</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Shutdown</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
         </v-list>
       </v-navigation-drawer>
       <v-content>
@@ -24,8 +32,16 @@
 
 <script>
   import Settings from '@/components/Settings.vue'
+  import { remote } from 'electron'
+
   export default {
     name: 'h5native-client',
+
+    methods: {
+      handleShutdown () {
+        remote.app.quit()
+      }
+    },
 
     components: {
       Settings
