@@ -3,7 +3,7 @@
     <v-app>
       <v-navigation-drawer app permanent>
         <v-list dense>
-          <v-list-tile @click.prevent>
+          <v-list-tile v-ripple @click.prevent>
             <v-list-tile-action>
               <v-icon>settings</v-icon>
             </v-list-tile-action>
