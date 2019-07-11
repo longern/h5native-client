@@ -72,10 +72,12 @@
     "rimraf": "^2.6.3",
     "vue": "^2.6.10",
     "vue-electron": "^1.0.6",
+    "vue-i18n": "^8.12.0",
     "vuetify": "^1.5.16",
     "ws": "^7.0.1"
   },
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.3.0",
     "ajv": "^6.5.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
