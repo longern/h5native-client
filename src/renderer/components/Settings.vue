@@ -2,15 +2,15 @@
   <div class="settings">
     <v-switch
       v-model="formData.disableHTTPS"
-      label="Disable HTTPS"
+      :label="$t('Disable HTTPS')"
     ></v-switch>
     <v-switch
       v-model="formData.trustAllApps"
-      label="Trust All Apps"
+      :label="$t('Trust All Apps')"
     ></v-switch>
     <v-switch
       v-model="formData.developerMode"
-      label="Developer Mode"
+      :label="$t('Developer Mode')"
     ></v-switch>
   </div>
 </template>
@@ -47,3 +47,13 @@
 <style>
   /* CSS */
 </style>
+
+<i18n>
+{
+  "zh-hans": {
+    "Developer Mode": "开发者模式",
+    "Disable HTTPS": "禁用 HTTPS",
+    "Trust All Apps": "信任所有应用"
+  }
+}
+</i18n>

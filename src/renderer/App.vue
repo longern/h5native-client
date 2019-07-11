@@ -8,15 +8,15 @@
               <v-icon>settings</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>Settings</v-list-tile-title>
+              <v-list-tile-title v-t="'Settings'"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-list-tile v-ripple @click="handleShutdown">
+          <v-list-tile v-ripple @click="handleCloseAllApps">
             <v-list-tile-action>
               <v-icon>close</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>Shutdown</v-list-tile-title>
+              <v-list-tile-title v-t="'Close All Apps'"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -38,7 +38,7 @@
     name: 'h5native-client',
 
     methods: {
-      handleShutdown () {
+      handleCloseAllApps () {
         remote.app.quit()
       }
     },
@@ -54,3 +54,12 @@ $material-design-icons-font-directory-path: '~material-design-icons-iconfont/dis
 
 @import '~material-design-icons-iconfont/src/material-design-icons';
 </style>
+
+<i18n>
+{
+  "zh-hans": {
+    "Settings": "设置",
+    "Close All Apps": "关闭所有应用"
+  }
+}
+</i18n>
