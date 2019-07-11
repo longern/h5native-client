@@ -53,7 +53,7 @@ function $require(path) {
 
   try {
     if (path === 'h5native') {
-      path = './h5native'
+      path = '../h5native'
     }
     return require(path)
   } catch (e) {
@@ -61,6 +61,9 @@ function $require(path) {
     return null
   }
 }
+
+// Find modules in current directory
+module.paths.push(require('path').resolve('node_modules'))
 
 module.exports = {
   install,
