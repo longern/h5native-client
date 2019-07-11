@@ -1,12 +1,5 @@
 (function() {
-  const requireWhitelist = [
-    'custom-electron-titlebar'
-  ]
-
-  const requireBlacklist = [
-    'electron-settings'
-  ]
-
+  const h5native = require('./h5native')
   const { remote } = require('electron')
   const settings = require('electron-settings')
   const parseArgs = remote.getCurrentWindow().parseArgs || {}
@@ -16,8 +9,6 @@
   process.once('loaded', function() {
     global.setImmediate = setImmediateBackup;
   });
-
-  const authorizedSites = settings.get('authorizedSites', [])
 
   window.installPackage = name => new Promise(function(resolve, reject) {
     const process = require('process')
@@ -41,43 +32,7 @@
     settings.set('fileExtensionTable', fileExtensionTable)
   }
 
-  window.require = function(path) {
-    if (requireWhitelist.indexOf(path) !== -1) {
-      return require(path)
-    }
-    if (requireBlacklist.indexOf(path) !== -1) {
-      return null
-    }
-
-    if (authorizedSites.indexOf(window.location.href) === -1 && !settings.get('trustAllApps', false)) {
-      const choice = remote.dialog.showMessageBox(remote.getCurrentWindow(), {
-        type: 'question',
-        buttons: ['Accept', 'Reject'],
-        title: 'HTML5 Native Apps',
-        message: window.location.href + ' applies to access your computer',
-        defaultId: 0,
-        cancelId: 1
-      })
-
-      const leave = (choice === 1)
-      if (leave) {
-        return null
-      }
-
-      authorizedSites.push(window.location.href)
-      settings.set('authorizedSites', authorizedSites)
-    }
-
-    try {
-      if (path === 'h5native') {
-        path = './h5native'
-      }
-      return require(path)
-    } catch (e) {
-      console.log(e)
-      return null
-    }
-  }
+  window.require = h5native.require
 
   window.buildFromTemplate = remote.Menu.buildFromTemplate
 
