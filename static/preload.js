@@ -81,7 +81,7 @@
 
   window.buildFromTemplate = remote.Menu.buildFromTemplate
 
-  if (parseArgs.browser) {
+  if (settings.get('developerMode')) {
     document.addEventListener('keydown', function(ev) {
       switch (ev.which) {
         case 116:

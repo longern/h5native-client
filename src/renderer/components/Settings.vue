@@ -8,6 +8,10 @@
       v-model="formData.trustAllApps"
       label="Trust All Apps"
     ></v-switch>
+    <v-switch
+      v-model="formData.developerMode"
+      label="Developer Mode"
+    ></v-switch>
   </div>
 </template>
 
@@ -21,7 +25,8 @@
       return {
         formData: {
           disableHTTPS: electronSettings.get('disableHTTPS', false),
-          trustAllApps: electronSettings.get('trustAllApps', false)
+          trustAllApps: electronSettings.get('trustAllApps', false),
+          developerMode: electronSettings.get('developerMode', false)
         }
       }
     },
