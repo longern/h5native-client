@@ -1,6 +1,6 @@
 {
   "name": "h5native-client",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Siyu Long <i@longern.com>",
   "description": "Native client for HTML 5 apps",
   "license": "MIT",
