@@ -1,8 +1,10 @@
 import { BrowserWindow } from 'electron'
 import _ from 'lodash'
+import fs from 'fs'
 import path from 'path'
-import url from 'url'
+import request from 'request'
 import settings from 'electron-settings'
+import url from 'url'
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'
@@ -56,6 +58,19 @@ function createAppWindow (argv, workingDirectory) {
 
   mainWindow.on('closed', () => {
     mainWindow = null
+  })
+
+  mainWindow.webContents.on('page-favicon-updated', async (event, favicons) => {
+    try {
+      const iconStream = fs.createWriteStream('favicon.ico')
+      request(favicons[0]).pipe(iconStream)
+
+      iconStream.on('close', () => {
+        mainWindow.setIcon('favicon.ico')
+      })
+    } catch (e) {
+      console.log(e)
+    }
   })
 }
 
