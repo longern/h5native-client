@@ -6,7 +6,7 @@ import request from 'request'
 import settings from 'electron-settings'
 import url from 'url'
 
-let mainWindow
+let mainWindows = []
 const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
@@ -15,7 +15,7 @@ function createCenterWindow () {
   /**
    * Initial window options
    */
-  mainWindow = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     height: 563,
     useContentSize: true,
     width: 1000,
@@ -28,8 +28,10 @@ function createCenterWindow () {
   mainWindow.loadURL(winURL)
 
   mainWindow.on('closed', () => {
-    mainWindow = null
+    _.pull(mainWindows, mainWindow)
   })
+
+  mainWindows.push(mainWindow)
 }
 
 function createAppWindow (argv, workingDirectory) {
@@ -41,7 +43,7 @@ function createAppWindow (argv, workingDirectory) {
     parsedAppUrl.protocol = 'http'
   }
 
-  mainWindow = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     height: 563,
     useContentSize: true,
     width: 1000,
@@ -57,7 +59,7 @@ function createAppWindow (argv, workingDirectory) {
   mainWindow.loadURL(parsedAppUrl.href)
 
   mainWindow.on('closed', () => {
-    mainWindow = null
+    _.pull(mainWindows, mainWindow)
   })
 
   mainWindow.webContents.on('page-favicon-updated', async (event, favicons) => {
@@ -72,6 +74,8 @@ function createAppWindow (argv, workingDirectory) {
       console.log(e)
     }
   })
+
+  mainWindows.push(mainWindow)
 }
 
 function createWindow (argv, workingDirectory) {
