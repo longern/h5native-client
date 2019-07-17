@@ -63,10 +63,12 @@ function $require(path) {
 }
 
 async function requireAsync(path, packageName) {
-  let requiredPackage = require(path)
-  if (requiredPackage) return requiredPackage
-  await install(packageName || path)
-  return require(path)
+  try {
+    return require(path)
+  } catch (e) {
+    await install(packageName || path)
+    return require(path)
+  }
 }
 
 // Find modules in current directory
